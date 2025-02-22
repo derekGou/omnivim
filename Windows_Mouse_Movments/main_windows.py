@@ -92,5 +92,7 @@ def run_windows():
             elif event.name == "shift":
                 keyboard.release(event.name)
                 shift_mode = False
+            else:
+                keyboard.release(event.name)
     keyboard.hook(on_key_event, suppress=True)
     # keyboard.wait("ctrl+f4")
