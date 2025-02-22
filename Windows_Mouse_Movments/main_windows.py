@@ -3,30 +3,38 @@ from pynput.keyboard import Controller, Key
 import keyboard
 from normal_mode import normal_on_key_event as normal
 mode = "normal"
-def on_key_event(event):
+ctrl_mode = False
+def write_mode():
     global mode
+    with open("vimmode.txt", "w") as f:
+        f.truncate(0)
+        f.write(mode)
+    f.close()
+def on_key_event(event):
+    global mode, ctrl_mode
     if event.event_type == 'down':
         if mode == "normal":
             match event.name:
                 case "i":
                     mode = "insert"
                     print("Switch mode to "+mode+".")
+                    write_mode()
                     return False
                 case "v":
                     mode = "visual"
                     print("Switch mode to "+mode+".")
+                    write_mode()
                     return False
                 case "m":
                     mode = "mouse"
-                    print("Switch mode to "+mode+".")                
+                    print("Switch mode to "+mode+".")
+                    write_mode()             
                     return False
-        elif (keyboard.is_pressed("ctrl") and keyboard.is_pressed("c")) or event.name=="esc":
+        elif (ctrl_mode and event.name == "c") or event.name=="esc":
             mode = "normal"
             print("Switch mode to "+mode+".")
+            write_mode()
             return False
-        with open("../vimmode.txt", "w") as f:
-            f.truncate(0)
-            f.write(mode)
         match mode:
             case "normal":
                 normal(event)
@@ -36,13 +44,12 @@ def on_key_event(event):
                         keyboard.press("shift")
                         return False
                     elif event.name == "ctrl":
-                        keyboard.press("ctrl")
+                        ctrl_mode = True
                         return False
                     else:
                         keyboard.press_and_release(event.name)
                         keyboard.release("shift")
-                        keyboard.release("ctrl")
-                        return False
-                    
+                        ctrl_mode = False
+                        return False                    
 keyboard.hook(on_key_event, suppress=True)
 keyboard.wait("ctrl+f4")
