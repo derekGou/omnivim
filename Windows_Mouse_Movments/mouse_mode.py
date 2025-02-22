@@ -66,7 +66,7 @@ def move_mouse_down():
         time.sleep(0.01)
 
 
-def on_key_event(event):
+def mouse_on_key_event(event):
     global moving_left, moving_right, moving_up, moving_down, speed_multiplier
     print(event.name)
     if event.event_type == "down":
@@ -119,9 +119,6 @@ def on_key_event(event):
         elif event.name == "n":
             mouse.click(Button.right)
             return False
-
-        return False
-
     elif event.event_type == "up":
         match event.name:
             case "h" | "H":
@@ -135,5 +132,5 @@ def on_key_event(event):
         return False
 
 
-keyboard.hook(on_key_event, suppress=True)
-keyboard.wait("esc")
+# keyboard.hook(mouse_on_key_event, suppress=True)
+# keyboard.wait("esc")
