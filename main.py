@@ -5,37 +5,38 @@ from threading import Thread
 from platform import system
 import os
 
-# from Windows_Mouse_Movments.main_windows import run_windows
+from Windows_Mouse_Movments.main_windows import run_windows
 
 def load_image():
-    with open("mode.txt", "r+") as f:
-        typ = f.read()
-        if typ == "Normal":
-            return Image.open("omnivimn.png")
-        if typ == "Visual":
-            return Image.open("omnivimv.png")
-        if typ == "Insert":
-            return Image.open("omnivimi.png")
-        if typ == "Mouse":
-            return Image.open("omnivimm.png")
-        return Image.open("omnivim.png")
+    while True:
+        with open("mode.txt", "r+") as f:
+            typ = f.read()
+            if typ == "Normal":
+                icon.icon = Image.open("omnivimn.png")
+                return
+            if typ == "Visual":
+                icon.icon = Image.open("omnivimv.png")
+                return
+            if typ == "Insert":
+                icon.icon = Image.open("omnivimi.png")
+                return
+            if typ == "Mouse":
+                icon.icon = Image.open("omnivimm.png")
+                return
+            icon.icon = Image.open("omnivim.png")
+            return
         
 def run_code():
     if os.name=='nt':
-        with open("mode.txt", "w") as f:
-            f.truncate(0)
-            f.write("windows")
-            # t1 = Thread(target=run_windows)
-            f.close()
+        pass
+        t1 = Thread(target=run_windows)
     elif os.name=='posix':
-        with open("mode.txt", "w") as f:
-            f.truncate(0)
-            f.write("mac")
-            # t2 = Thread(target=holo_touch)
-            f.close()
+        pass
+        # t2 = Thread(target=holo_touch)
 
 run_code()
 
 icon = pystray.Icon("test_icon")
 icon.icon = load_image()
+thread = Thread(target=load_image)
 icon.run()
