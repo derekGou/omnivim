@@ -5,7 +5,7 @@ from threading import Thread
 from platform import system
 import os
 
-from Windows_Mouse_Movments.main_windows import on_key_event as run_windows
+from Windows_Mouse_Movments.main_windows import run_windows
 
 def load_image():
     with open("vimmode.txt", "r") as f:
