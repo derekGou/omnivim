@@ -38,9 +38,17 @@ def on_key_event(event):
             return False
         match mode:
             case "normal":
-                normal(event)
+                if event.name == "ctrl":
+                    ctrl_mode = True
+                    return False
+                else:
+                    normal(event)
             case "mouse":
-                mouse(event)
+                if event.name == "ctrl":
+                    ctrl_mode = True
+                    return False
+                else:
+                    mouse(event)
             case "insert":
                 if event.event_type == "down":
                     if event.name == "shift":
