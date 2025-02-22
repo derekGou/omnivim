@@ -2,6 +2,7 @@ from pynput.mouse import Button, Controller
 from pynput.keyboard import Controller, Key
 import keyboard
 from normal_mode import normal_on_key_event as normal
+from mouse_mode import mouse_on_key_event as mouse
 mode = "normal"
 ctrl_mode = False
 def write_mode():
@@ -38,6 +39,8 @@ def on_key_event(event):
         match mode:
             case "normal":
                 normal(event)
+            case "mouse":
+                mouse(event)
             case "insert":
                 if event.event_type == "down":
                     if event.name == "shift":
@@ -50,6 +53,9 @@ def on_key_event(event):
                         keyboard.press_and_release(event.name)
                         keyboard.release("shift")
                         ctrl_mode = False
-                        return False                    
+                        return False      
+    elif event.event_type == 'up' and mode == "mouse":
+        mouse(event)
+        return False
 keyboard.hook(on_key_event, suppress=True)
 keyboard.wait("ctrl+f4")
