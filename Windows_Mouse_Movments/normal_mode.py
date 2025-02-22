@@ -53,8 +53,7 @@ def normal_on_key_event(event):
         elif d_mode:
             match event.name:
                 case "d":
-                    keyboard.press("shift")
-                    keyboard.press_and_release("home")
+                    keyboard.press_and_release("shift+ home")
             d_mode = False
             return False
         elif g_mode:

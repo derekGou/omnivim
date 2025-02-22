@@ -3,6 +3,7 @@ from pynput.keyboard import Controller, Key
 import keyboard
 from normal_mode import normal_on_key_event as normal
 from mouse_mode import mouse_on_key_event as mouse
+from visual_mode import visual_on_key_event as visual
 mode = "normal"
 ctrl_mode = False
 def write_mode():
@@ -29,7 +30,7 @@ def on_key_event(event):
                 case "m":
                     mode = "mouse"
                     print("Switch mode to "+mode+".")
-                    write_mode()             
+                    write_mode()
                     return False
         elif (ctrl_mode and event.name == "c") or event.name=="esc":
             mode = "normal"
@@ -37,6 +38,12 @@ def on_key_event(event):
             write_mode()
             return False
         match mode:
+            case "visual":
+                if event.name == "ctrl":
+                    ctrl_mode = True
+                    return False
+                else:
+                    visual(event)   
             case "normal":
                 if event.name == "ctrl":
                     ctrl_mode = True
