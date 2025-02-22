@@ -1,29 +1,34 @@
 from pynput.mouse import Button, Controller
 from pynput.keyboard import Controller, Key
 import keyboard
-kb_controller = Controller()
+from normal_mode import on_key_event as normal
+mode = "normal"
 
-def on_key_event(event):
-    if event.event_type == 'down':
-        match event.name:
-            case "h":
-                keyboard.press_and_release("left_arrow")
+def run_windows():
+    def on_key_event(event):
+        global mode
+        if event.event_type == 'down':
+            if mode == "default":
+                match event.name:
+                    case "i":
+                        mode = "insert"
+                        return False
+                    case "v":
+                        mode = "visual"
+                        return False
+                    case "m":
+                        mode = "mouse"                    
+                        return False
+            elif event.name=="ctrl+c" or event.name=="esc":
+                mode = "normal"
                 return False
-            case "j":
-                keyboard.press_and_release("down_arrow")
-                return False
-            case "k":
-                keyboard.press_and_release("up_arrow")
-                return False
-            case "l":
-                keyboard.press_and_release("right_arrow")
-                return False
-            case "b":
-                keyboard.press("ctrl")
-                keyboard.press_and_release("left_arrow")
-                keyboard.release("ctrl")
-                return False
+            with open("../immode.txt", "w") as f:
+                f.truncate(0)
+                f.write(mode)
+            match mode:
+                case "normal":
+                    normal(event)
 
 
-keyboard.hook(on_key_event, suppress=True)
-keyboard.wait("esc")
+    keyboard.hook(on_key_event, suppress=True)
+    keyboard.wait("f4")
