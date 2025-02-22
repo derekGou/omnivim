@@ -5,7 +5,7 @@ from threading import Thread
 from platform import system
 import os
 
-from Windows_Mouse_Movments.main_windows import run_windows
+# from Windows_Mouse_Movments.main_windows import run_windows
 
 def load_image():
     with open("vimmode.txt", "r+") as f:
@@ -36,6 +36,4 @@ menu = pystray.Menu(
 
 icon = pystray.Icon("omnivim", icon=load_image(), menu=menu)
 icon.icon = Image.open("omnivim.png")
-thread = Thread(target=load_image)
-thread.start()
 icon.run()
