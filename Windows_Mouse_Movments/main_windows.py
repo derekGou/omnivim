@@ -1,9 +1,9 @@
 from pynput.mouse import Button, Controller
 from pynput.keyboard import Controller, Key
 import keyboard
-from normal_mode import normal_on_key_event as normal
-from mouse_mode import mouse_on_key_event as mouse
-from visual_mode import visual_on_key_event as visual
+from Windows_Mouse_Movments.normal_mode import normal_on_key_event as normal
+from Windows_Mouse_Movments.mouse_mode import mouse_on_key_event as mouse
+from Windows_Mouse_Movments.visual_mode import visual_on_key_event as visual
 mode = "normal"
 ctrl_mode = False
 shift_mode = False
