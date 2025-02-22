@@ -50,6 +50,8 @@ def visual_on_key_event(event):
                 case "y":
                     print("copied")
                     keyboard.press_and_release("ctrl + c")
+                    keyboard.press_and_release("left_arrow")
+                    keyboard.press_and_release("right_arrow")
                     return False
         elif g_mode:
             match event.name:
