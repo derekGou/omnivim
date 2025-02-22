@@ -58,19 +58,11 @@ def on_key_event(event):
                     mouse(event)
             case "insert":
                 if event.event_type == "down":
-                    if event.name == "shift":
-                        keyboard.press("shift")
-                        return False
-                    elif event.name == "ctrl":
-                        ctrl_mode = True
-                        return False
-                    else:
-                        keyboard.press_and_release(event.name)
-                        keyboard.release("shift")
-                        ctrl_mode = False
-                        return False      
+                    keyboard.press(event.name) 
     elif event.event_type == 'up' and mode == "mouse":
         mouse(event)
         return False
+    elif event.event_type == "up":
+        keyboard.release(event.name) 
 keyboard.hook(on_key_event, suppress=True)
 keyboard.wait("ctrl+f4")
