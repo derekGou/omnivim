@@ -35,7 +35,9 @@ def on_key_event(event):
         elif (ctrl_mode and event.name == "c") or event.name=="esc":
             mode = "normal"
             print("Switch mode to "+mode+".")
+            keyboard.release("ctrl")
             write_mode()
+            ctrl_mode=False
             return False
         match mode:
             case "visual":
