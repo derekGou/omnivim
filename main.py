@@ -5,22 +5,21 @@ from threading import Thread
 from platform import system
 import os
 
+from Windows_Mouse_Movments.main_windows import run_windows
+
 def load_image():
     return Image.open("omni.png")
-print("working1")
 
 def run_code():
     if os.name=='nt':
         with open("mode.txt", "w") as f:
             f.truncate(0)
-            f.write("windows\n")
-            f.write("normal")
-            # t1 = Thread(target=holo_touch)
+            f.write("windows")
+            t1 = Thread(target=run_windows)
     elif os.name=='posix':
         with open("mode.txt", "w") as f:
             f.truncate(0)
-            f.write("mac\n")
-            f.write("normal")
+            f.write("mac")
             # t2 = Thread(target=holo_touch)
 
 run_code()
