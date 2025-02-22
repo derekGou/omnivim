@@ -18,7 +18,7 @@ def load_image():
         "insert": "omnivimi.png",
         "mouse": "omnivimm.png"
     }
-
+    
     if typ not in images:
         return Image.open("omnivim.png")
     return Image.open(images[typ])
