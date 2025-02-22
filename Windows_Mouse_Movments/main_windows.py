@@ -89,4 +89,4 @@ def on_key_event(event):
             keyboard.release(event.name)
             shift_mode = False
 keyboard.hook(on_key_event, suppress=True)
-keyboard.wait("ctrl+f4")
+# keyboard.wait("ctrl+f4")
