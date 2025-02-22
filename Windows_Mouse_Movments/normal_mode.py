@@ -30,9 +30,9 @@ def normal_on_key_event(event):
                 return False
             case "^":
                 keyboard.press_and_release("home")
+                keyboard.release("shift")
                 return False
             case "$":
                 keyboard.press_and_release("end")
+                keyboard.release("shift")
                 return False
-keyboard.hook(normal_on_key_event, suppress=True)
-keyboard.wait("esc")
