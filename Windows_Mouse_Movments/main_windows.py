@@ -1,10 +1,6 @@
 from pynput.mouse import Button, Controller
 from pynput.keyboard import Controller, Key
 import keyboard
-def move_left():
-    
-    print('amit gay')# Initialize Mouse and Keyboard
-mouse = Controller()
 kb_controller = Controller()
 
 def on_key_event(event):

@@ -1,9 +1,7 @@
 from pynput.mouse import Button, Controller
 from pynput.keyboard import Controller, Key
 import keyboard
-def move_left():
-    
-    print('amit gay')# Initialize Mouse and Keyboard
+keep_elements = ["ctrl","shift"]
 mouse = Controller()
 kb_controller = Controller()
 
@@ -32,18 +30,27 @@ def on_key_event(event):
                 keyboard.press_and_release("right_arrow")
                 keyboard.release("ctrl")
                 return False
+            case "e":
+                keyboard.press_and_release("ctrl+right_arrow")
+                keyboard.press_and_release()
+                return False
             case "0":
                 keyboard.press_and_release("home")
                 keyboard.press_and_release("home")
                 return False
-            case "^":
+            case "shift+6":
                 keyboard.press_and_release("home")
+                keyboard.release("shift")
                 return False
-            case "$":
+            case "shift+4":
                 keyboard.press_and_release("end")
-                
+                keyboard.release("shift")
                 return False
-        keyboard.release(event.name)
+            case "r":
+                keyboard.press_and_release("end")
+                keyboard.release("shift")
+                return False
+            
 
 
 keyboard.hook(on_key_event, suppress=True)
