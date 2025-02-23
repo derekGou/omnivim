@@ -12,38 +12,37 @@ def visual_on_key_event(event):
         if not d_mode and not g_mode:
             match event.name:
                 case "h":
-                    keyboard.press_and_release("shift + left_arrow")
+                    keyboard.send("right shift+left shift+left_arrow")
                     return False
                 case "j":
-                    keyboard.press_and_release("shift + down_arrow")
+                    keyboard.send("right shift+left shift+down_arrow")
                     return False
                 case "k":
-                    keyboard.press_and_release("shift + up_arrow")
+                    keyboard.send("right shift+left shift+up_arrow")
                     return False
                 case "l":
-                    keyboard.press_and_release("shift + right_arrow")
+                    keyboard.send("right shift+left shift+right_arrow")
                     return False
                 case "b":
-                    keyboard.press_and_release("shift + ctrl+left_arrow")
+                    keyboard.send("ctrl+right shift+left shift+left_arrow")
                     return False
                 case "w":
-                    keyboard.press_and_release("shift + ctrl + right_arrow")
+                    keyboard.send("ctrl+right shift+left shift+right_arrow")
                     return False
                 case "0":
-                    keyboard.press_and_release("shift + left_arrow")
-                    keyboard.press_and_release("shift + home")
-                    keyboard.press_and_release("shift + home")
+                    keyboard.send("right shift+left shift+home")
+                    keyboard.send("right shift+left shift+home")
                     return False
                 case "^":
-                    keyboard.press_and_release("shift + home")
+                    keyboard.send("right shift+left shift+home")
                     keyboard.release("shift")
                     return False
                 case "$":
-                    keyboard.press_and_release("shift + end")
+                    keyboard.send("right shift+left shift+end")
                     keyboard.release("shift")
                     return False
                 case "G":
-                    keyboard.press_and_release("shift+ ctrl+end")
+                    keyboard.send("ctrl+right shift+left shift+end")
                     keyboard.release("shift")
                     return False
                 case "g":
@@ -63,7 +62,7 @@ def visual_on_key_event(event):
         elif g_mode:
             match event.name:
                 case "g":
-                    keyboard.press_and_release("shift+ctrl+home")
+                    keyboard.send("ctrl+right shift+left shift+home")
             g_mode = False
             return False
 

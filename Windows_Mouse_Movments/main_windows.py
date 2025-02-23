@@ -68,7 +68,6 @@ def run_windows():
                             return False
                         elif shift_mode:
                             if event.name.isalpha() and len(event.name) == 1:
-                                print(len(event.name))
                                 keyboard.write(event.name.upper())
                                 return False
                             else:
