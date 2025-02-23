@@ -67,12 +67,13 @@ def run_windows():
                             shift_mode = True
                             return False
                         elif shift_mode:
-                            if event.name.isalpha():
+                            if event.name.isalpha() and len(event.name) == 1:
+                                print(len(event.name))
                                 keyboard.write(event.name.upper())
+                                return False
                             else:
-                                keyboard.write(event.name)
-                            return False
-
+                                keyboard.press(f"shift+{event.name}")
+                                return False
                         else:
                             keyboard.press(event.name)
                             return False
