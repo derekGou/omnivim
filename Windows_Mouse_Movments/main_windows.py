@@ -75,20 +75,14 @@ def run_windows():
 
                 case "insert":
                     if event.event_type == "down":
-
                         # allows for default key-binds to be used in insert mode
                         if event.name == "ctrl":
                             keyboard.press(event.name)
                             ctrl_mode = True
-                            return False
-
                         # allows for typing shifted keys
-                        elif event.name =="shift":
+                        if event.name =="shift":
                             shift_mode = True
-                            return False
-
-                        elif shift_mode:
-
+                        if shift_mode and not ctrl_mode:
                             # if alphabetic and one character long (not SPACE, BACKSPACE, or ENTER)
                             if event.name.isalpha() and len(event.name) == 1:
                                 keyboard.write(event.name.upper())
@@ -101,9 +95,13 @@ def run_windows():
                                 else:
                                     keyboard.press(f"shift+{event.name}")
                                 return False
+                        elif shift_mode and ctrl_mode:
+                            keyboard.send(f"ctrl+shift+{event.name}")
                         else:
                             keyboard.press(event.name)
                             return False
+                        
+                    return False
 
         # release held keys for mouse navigation
         elif event.event_type == 'up' and mode == "mouse":
