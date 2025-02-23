@@ -4,7 +4,7 @@ import keyboard
 from Windows_Mouse_Movments.normal_mode import normal_on_key_event as normal
 from Windows_Mouse_Movments.mouse_mode import mouse_on_key_event as mouse
 from Windows_Mouse_Movments.visual_mode import visual_on_key_event as visual
-from write_mode import write_mode
+from Windows_Mouse_Movments.write_mode import write_mode
 
 
 ctrl_mode = False
@@ -65,7 +65,7 @@ def run_windows():
                             if event.name.isalpha():  # Check if it's a letter
                                 keyboard.write(event.name.upper())  # Convert to uppercase directly
                             else:
-                                keyboard.write("event.name")  # Use shift for non-letters
+                                keyboard.write(event.name)  # Use shift for non-letters
                             return False
 
                         else:

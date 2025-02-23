@@ -1,10 +1,11 @@
 from pynput.mouse import Button, Controller
 from pynput.keyboard import Controller, Key
 import keyboard
+from Windows_Mouse_Movments.write_mode import write_mode
 d_mode, g_mode = False,False
 mouse = Controller()
 kb_controller = Controller()
-from write_mode import write_mode
+
 
 def normal_on_key_event(event):
     global d_mode, g_mode

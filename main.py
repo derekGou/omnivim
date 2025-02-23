@@ -5,11 +5,11 @@ from threading import Thread
 from platform import system
 import os
 from Windows_Mouse_Movments.main_windows import run_windows
+from Windows_Mouse_Movments.write_mode import write_mode
 import time
-with open("vimmode.txt", "w") as f:
-    f.truncate(0)
-    f.write("normal")
-f.close()
+
+
+write_mode("normal")
 
 def load_image():
     with open("vimmode.txt", "r") as f:
