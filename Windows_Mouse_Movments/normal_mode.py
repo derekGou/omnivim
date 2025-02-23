@@ -54,7 +54,6 @@ def normal_on_key_event(event):
                     g_mode = True
                     return False
                 case "x":
-                    keyboard.press_and_release("space")
                     keyboard.press_and_release("backspace")
                     return False
                 case "p":
@@ -71,14 +70,19 @@ def normal_on_key_event(event):
                     keyboard.press_and_release("enter")
                     write_mode("insert")
                     return False
-                case "ctrl + s":
-                    keyboard.press_and_release("ctrl + s")
+                case "u":
+                    keyboard.press_and_release("ctrl + z")
                     return False
+                case "r":
+                    keyboard.press_and_release("ctrl + shift + z")
+                    return False
+                
         elif d_mode:
             match event.name:
                 case "d":
-                    keyboard.press_and_release("shift + home")
-                    keyboard.press_and_release("shift + home")
+                    keyboard.press_and_release("end")
+                    keyboard.press_and_release("left shift + right shift + home")
+                    keyboard.press_and_release("left shift + right shift + home")
                     keyboard.press_and_release("space")
                     keyboard.press_and_release("backspace")
                     keyboard.press_and_release("backspace")
