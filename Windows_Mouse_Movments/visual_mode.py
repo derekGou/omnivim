@@ -48,7 +48,6 @@ def visual_on_key_event(event):
                     g_mode = True
                     return False
                 case "y":
-                    print("copied")
                     keyboard.press_and_release("ctrl + c")
                     keyboard.press_and_release("left_arrow")
                     keyboard.press_and_release("right_arrow")

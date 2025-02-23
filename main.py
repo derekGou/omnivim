@@ -6,6 +6,10 @@ from platform import system
 import os
 from Windows_Mouse_Movments.main_windows import run_windows
 import time
+with open("vimmode.txt", "w") as f:
+    f.truncate(0)
+    f.write("normal")
+f.close()
 
 def load_image():
     with open("vimmode.txt", "r") as f:
@@ -40,8 +44,7 @@ def setup(icon):
     icon.visible = True
     while icon.visible:  # Ensure the thread stops if the icon is closed
         icon.icon = load_image()
-        print("hello")
         time.sleep(1)  # Avoid 100% CPU usage
 
-
+run_code()
 icon.run(setup)

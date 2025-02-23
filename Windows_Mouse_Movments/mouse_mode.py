@@ -68,7 +68,6 @@ def move_mouse_down():
 
 def mouse_on_key_event(event):
     global moving_left, moving_right, moving_up, moving_down, speed_multiplier
-    print(event.name)
     if event.event_type == "down":
         match event.name:
             case "h" | "l" | "k" | "j":

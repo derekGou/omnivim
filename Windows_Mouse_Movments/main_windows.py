@@ -24,22 +24,18 @@ def run_windows():
                 match event.name:
                     case "i":
                         mode = "insert"
-                        print("Switch mode to "+mode+".")
                         write_mode()
                         return False
                     case "v":
                         mode = "visual"
-                        print("Switch mode to "+mode+".")
                         write_mode()
                         return False
                     case "m":
                         mode = "mouse"
-                        print("Switch mode to "+mode+".")
                         write_mode()
                         return False
             elif (ctrl_mode and event.name == "c") or event.name=="esc":
                 mode = "normal"
-                print("Switch mode to "+mode+".")
                 keyboard.release("ctrl")
                 write_mode()
                 ctrl_mode=False
@@ -64,9 +60,7 @@ def run_windows():
                     else:
                         mouse(event)
                 case "insert":
-                    print(event.name)
                     if event.event_type == "down":
-                        print(event)
                         if event.name == "ctrl":
                             keyboard.press(event.name) 
                             ctrl_mode = True
