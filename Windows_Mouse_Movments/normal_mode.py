@@ -60,10 +60,17 @@ def normal_on_key_event(event):
                 case "p":
                     keyboard.press_and_release("ctrl+v")
                     return False
+                case "ctrl + s":
+                    keyboard.press_and_release("ctrl + s")
+                    return False
         elif d_mode:
             match event.name:
                 case "d":
-                    keyboard.press_and_release("shift+ home")
+                    keyboard.press_and_release("shift + home")
+                    keyboard.press_and_release("shift + home")
+                    keyboard.press_and_release("space")
+                    keyboard.press_and_release("backspace")
+                    keyboard.press_and_release("backspace")
             d_mode = False
             return False
         elif g_mode:
@@ -72,4 +79,6 @@ def normal_on_key_event(event):
                     keyboard.press_and_release("ctrl+home")
             g_mode = False
             return False
+        
+
 
