@@ -54,11 +54,6 @@ class MainWindow(QWidget):
         self.textbox.setPlainText("Try me out!")
         self.layout.addWidget(self.textbox, alignment=Qt.AlignmentFlag.AlignCenter)
 
-        self.vim_mode_file = "Windows_Mouse_Movments/vimmode.txt"
-        self.file_watcher = QFileSystemWatcher()
-        self.file_watcher.addPath(self.vim_mode_file)
-        self.file_watcher.fileChanged.connect(self.on_file_change)
-
     def on_button_click(self):
         # Update the text based on the state
         with open("Windows_Mouse_Movments/vimmode.txt", "w") as f:
@@ -75,22 +70,7 @@ class MainWindow(QWidget):
 
         # Optionally trigger an update if needed
         self.update()
-    def on_file_change(self, path):
-        """Triggered when `vimmode.txt` changes. Updates the button dynamically."""
-        if path == self.vim_mode_file:
-            with open("Windows_Mouse_Movments/vimmode.txt", "w") as f:
-                text = f
-                f.truncate(0)
-                if text == "kill":
-                    self.extratext = "Turn on"
-                else:
-                    self.extratext = "Turn off"
 
-            # Update the button text directly without recreating the button
-            self.button.setText(f'{self.extratext} Omnivim')
-
-            # Optionally trigger an update if needed
-            self.update()
     def paintEvent(self, event):
         # No need to recreate the button here, just call the parent class's paintEvent
         super().paintEvent(event)
