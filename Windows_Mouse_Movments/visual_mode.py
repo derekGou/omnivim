@@ -6,44 +6,43 @@ d_mode, g_mode = False,False
 mouse = Controller()
 kb_controller = Controller()
 
-def visual_on_key_event(event):
+def visual_on_key_event(event): #Visual Mode Function
     global d_mode, g_mode
-    if event.event_type == 'down':
-        if not d_mode and not g_mode:
-            match event.name:
+    if event.event_type == 'down':#Makes sure is key down
+        if not d_mode and not g_mode:# Checks for special Cases
+            match event.name: # Vim commands on visual mode
                 case "h":
-                    keyboard.press_and_release("shift + left_arrow")
+                    keyboard.send("right shift+left shift+left_arrow")
                     return False
                 case "j":
-                    keyboard.press_and_release("shift + down_arrow")
+                    keyboard.send("right shift+left shift+down_arrow")
                     return False
                 case "k":
-                    keyboard.press_and_release("shift + up_arrow")
+                    keyboard.send("right shift+left shift+up_arrow")
                     return False
                 case "l":
-                    keyboard.press_and_release("shift + right_arrow")
+                    keyboard.send("right shift+left shift+right_arrow")
                     return False
                 case "b":
-                    keyboard.press_and_release("shift + ctrl+left_arrow")
+                    keyboard.send("ctrl+right shift+left shift+left_arrow")
                     return False
                 case "w":
-                    keyboard.press_and_release("shift + ctrl + right_arrow")
+                    keyboard.send("ctrl+right shift+left shift+right_arrow")
                     return False
                 case "0":
-                    keyboard.press_and_release("shift + left_arrow")
-                    keyboard.press_and_release("shift + home")
-                    keyboard.press_and_release("shift + home")
+                    keyboard.send("right shift+left shift+home")
+                    keyboard.send("right shift+left shift+home")
                     return False
                 case "^":
-                    keyboard.press_and_release("shift + home")
+                    keyboard.send("right shift+left shift+home")
                     keyboard.release("shift")
                     return False
                 case "$":
-                    keyboard.press_and_release("shift + end")
+                    keyboard.send("right shift+left shift+end")
                     keyboard.release("shift")
                     return False
                 case "G":
-                    keyboard.press_and_release("shift+ ctrl+end")
+                    keyboard.send("ctrl+right shift+left shift+end")
                     keyboard.release("shift")
                     return False
                 case "g":
@@ -56,14 +55,13 @@ def visual_on_key_event(event):
                     write_mode("normal")
                     return False
                 case "x":
-                    keyboard.press_and_release(" ")
-                    keyboard.press_and_release("backspace")
+                    keyboard.send("backspace")
                     write_mode("normal")
                     return False
-        elif g_mode:
+        elif g_mode: #G mode 
             match event.name:
                 case "g":
-                    keyboard.press_and_release("shift+ctrl+home")
+                    keyboard.send("ctrl+right shift+left shift+home")
             g_mode = False
             return False
 
