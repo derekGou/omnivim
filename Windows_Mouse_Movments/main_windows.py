@@ -13,7 +13,7 @@ shift_mode = False
 def run_windows():
     def on_key_event(event):
         global ctrl_mode,shift_mode
-        with open("vimmode.txt", "r") as f:
+        with open("Windows_Mouse_Movments/vimmode.txt", "r") as f:
             mode = f.read().strip()
         f.close()
         if event.event_type == 'down':

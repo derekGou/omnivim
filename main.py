@@ -9,10 +9,11 @@ from Windows_Mouse_Movments.write_mode import write_mode
 import time
 
 
+
 write_mode("normal")
 
 def load_image():
-    with open("vimmode.txt", "r") as f:
+    with open("Windows_Mouse_Movments/vimmode.txt", "r") as f:
         typ = f.read().strip()
 
 
