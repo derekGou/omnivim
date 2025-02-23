@@ -59,13 +59,15 @@ def run_windows():
                             ctrl_mode = True
                             return False
                         elif event.name =="shift":
-                            keyboard.press_and_release("shift+q")
-                            keyboard.press_and_release("backspace")
                             shift_mode = True
                             return False
                         elif shift_mode:
-                            keyboard.press_and_release(f"shift + {event.name}")
+                            if event.name.isalpha():  # Check if it's a letter
+                                keyboard.write(event.name.upper())  # Convert to uppercase directly
+                            else:
+                                keyboard.write("event.name")  # Use shift for non-letters
                             return False
+
                         else:
                             keyboard.press(event.name)
                             return False
@@ -82,4 +84,4 @@ def run_windows():
             else:
                 keyboard.release(event.name)
     keyboard.hook(on_key_event, suppress=True)
-    # keyboard.wait("ctrl+f4")
+    # keyboard.wait("ctrl+f4") QPDfGJCBm shift + )shift + _shift + _shift + _
