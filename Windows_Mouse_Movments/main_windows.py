@@ -6,38 +6,36 @@ from Windows_Mouse_Movments.mouse_mode import mouse_on_key_event as mouse
 from Windows_Mouse_Movments.visual_mode import visual_on_key_event as visual
 
 
-mode = "normal"
+
 ctrl_mode = False
 shift_mode = False
 
 def run_windows():
-    def write_mode():
-        global mode
+    def write_mode(mode):
         with open("vimmode.txt", "w") as f:
             f.truncate(0)
             f.write(mode)
         f.close()
     def on_key_event(event):
-        global mode, ctrl_mode,shift_mode
+        global ctrl_mode,shift_mode
+        with open("vimmode.txt", "r") as f:
+            mode = f.read().strip()
+        f.close()
         if event.event_type == 'down':
             if mode == "normal":
                 match event.name:
                     case "i":
-                        mode = "insert"
-                        write_mode()
+                        write_mode("insert")
                         return False
                     case "v":
-                        mode = "visual"
-                        write_mode()
+                        write_mode("visual")
                         return False
                     case "m":
-                        mode = "mouse"
-                        write_mode()
+                        write_mode("mouse")
                         return False
             elif (ctrl_mode and event.name == "c") or event.name=="esc":
-                mode = "normal"
                 keyboard.release("ctrl")
-                write_mode()
+                write_mode("normal")
                 ctrl_mode=False
                 return False
             match mode:
