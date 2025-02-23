@@ -17,14 +17,14 @@ def load_image():
 
 
     images = {
-        "normal": "omnivimn.png",
-        "visual": "omnivimv.png",
-        "insert": "omnivimi.png",
-        "mouse": "omnivimm.png"
+        "normal": "Images/omnivimn.png",
+        "visual": "Images/omnivimv.png",
+        "insert": "Images/omnivimi.png",
+        "mouse": "Images/omnivimm.png"
     }
 
     if typ not in images:
-        return Image.open("omnivim.png")
+        return Image.open("Images/omnivim.png")
     return Image.open(images[typ])
 
 def run_code():
