@@ -28,6 +28,8 @@ def run_code():
         t1 = Thread(target=run_windows, daemon=True)
         t1.start()
 
+run_code()
+
 menu = pystray.Menu(
     Item("Toggle State", run_code, default=True)
 )
