@@ -171,24 +171,28 @@ cd  omnivim
 
 ### Run the Build Script
 
--  **On Windows**:
-
 ```bash
 
 build.bat
 ```
-### Move `Omnivim.exe` out of `\dist` and into `omnivim`
+
+### Run the Setup Script
+
+```bash
+setup.bat
+```
   
 
 ## Usage
 
   
 
-After installation, launch Omnivim by executing the exe
+After installation, launch Omnivim by executing the exe in `\dist`
 
 ## GUI
 We built a simple, clean interface launched through the tray icon for users to toggle and test Omnivim. Additionally, the tray icon displays the current mode being used. ![](https://cdn.discordapp.com/attachments/1342874659326132225/1343218148115091508/Screenshot202025-02-2320at208.png?ex=67bc78e2&is=67bb2762&hm=2cc460c9373565d6e2cae21eb50ffede07ec56dda735844a852905e8213d7366&)
-## Icon list
+
+## Icon explanation
 |  **Off mode** | **Normal** | **Insert** | **Visual** | **Mouse** |
 |--|--| -- | --| --|
 |![Off mode](https://cdn.discordapp.com/attachments/1342874659326132225/1343218539095527424/omnivimoff.png?ex=67bc793f&is=67bb27bf&hm=e033ec35b541794485dc8c7945fe68e0df36622b789db1ee04c20f83e99ffec1&)| ![Normal](https://cdn.discordapp.com/attachments/1342874659326132225/1343218539422810205/omnivimnormal.png?ex=67bc793f&is=67bb27bf&hm=bce9b9078857b194db8ef588c135997036f54e78590ba1bc18552a9497cc2dc5&) |![Insert](https://cdn.discordapp.com/attachments/1342874659326132225/1343218540022337617/omniviminsert.png?ex=67bc793f&is=67bb27bf&hm=b298163beaabbcd30cde521c99b1b8f0aa44450661d32879b7fc71b6d9b82f62&) | ![Visual](https://cdn.discordapp.com/attachments/1342874659326132225/1343218538776756286/omnivimvisual.png?ex=67bc793f&is=67bb27bf&hm=68560e283cc3cfbb51b0958d7cd3f408a570dbdfcfdca5fdef5222d19179ad5d&) | ![Mouse](https://cdn.discordapp.com/attachments/1342874659326132225/1343218539728998490/omnivimmouse.png?ex=67bc793f&is=67bb27bf&hm=f05ea6f26cd4c88d1285c6c46da9713c30f4fe5b7e21c1d2410114733bbade31&) |
