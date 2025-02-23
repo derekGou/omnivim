@@ -86,6 +86,11 @@ def normal_on_key_event(event):# Initialize Function for normal mode
                     keyboard.press_and_release("space")
                     keyboard.press_and_release("backspace")
                     keyboard.press_and_release("backspace")
+                case "w":
+                    keyboard.press_and_release("ctrl+shift+left")
+                    keyboard.press_and_release("ctrl+shift+right")
+                    keyboard.send("ctrl + right shift + left shift + left")
+                    keyboard.press_and_release("backspace")
             d_mode = False
             return False
         elif g_mode: #  Special Case G
