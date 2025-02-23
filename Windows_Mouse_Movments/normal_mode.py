@@ -51,7 +51,11 @@ def normal_on_key_event(event):
                     g_mode = True
                     return False
                 case "x":
+                    keyboard.press_and_release("space")
                     keyboard.press_and_release("backspace")
+                    return False
+                case "p":
+                    keyboard.press_and_release("ctrl+v")
                     return False
         elif d_mode:
             match event.name:
