@@ -4,18 +4,13 @@ import keyboard
 from Windows_Mouse_Movments.normal_mode import normal_on_key_event as normal
 from Windows_Mouse_Movments.mouse_mode import mouse_on_key_event as mouse
 from Windows_Mouse_Movments.visual_mode import visual_on_key_event as visual
-
+from write_mode import write_mode
 
 
 ctrl_mode = False
 shift_mode = False
 
 def run_windows():
-    def write_mode(mode):
-        with open("vimmode.txt", "w") as f:
-            f.truncate(0)
-            f.write(mode)
-        f.close()
     def on_key_event(event):
         global ctrl_mode,shift_mode
         with open("vimmode.txt", "r") as f:
