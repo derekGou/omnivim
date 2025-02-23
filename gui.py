@@ -93,5 +93,3 @@ def run_window():
     mw.resize(1, 400)
     mw.show()
     sys.exit(app.exec())
-
-run_window()
