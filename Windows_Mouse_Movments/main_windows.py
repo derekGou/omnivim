@@ -96,7 +96,6 @@ def run_windows():
                         if event.name =="shift":
                             shift_mode = True
                         if shift_mode and not ctrl_mode:
-                            print(event.name)
                             # if alphabetic and one character long (not SPACE, BACKSPACE, or ENTER)
                             if event.name.isalpha() and len(event.name) == 1:
                                 keyboard.write(event.name.upper())
