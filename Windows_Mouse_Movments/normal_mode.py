@@ -50,6 +50,9 @@ def normal_on_key_event(event):
                 case "g":
                     g_mode = True
                     return False
+                case "x":
+                    keyboard.press_and_release("backspace")
+                    return False
         elif d_mode:
             match event.name:
                 case "d":
@@ -63,6 +66,3 @@ def normal_on_key_event(event):
             g_mode = False
             return False
 
-
-            
-            
