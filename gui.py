@@ -81,12 +81,23 @@ def load_stylesheet(filename):
     stream = QTextStream(file)
     return stream.readAll()
 
-def run_window():
-    app = QApplication(sys.argv)
-    stylesheet = load_stylesheet("style.css")
-    app.setStyleSheet(stylesheet)
+from PyQt6.QtWidgets import QApplication
 
+app = None  # Store QApplication globally
+mw = None   # Store MainWindow globally
+
+def run_window():
+    global app, mw
+
+    if mw and mw.isVisible():  # If the window is already open, bring it to the front
+        mw.raise_()
+        mw.activateWindow()
+        return
+
+    if not app:  # Create QApplication only if it doesn't exist
+        app = QApplication.instance() or QApplication(sys.argv)
+        stylesheet = load_stylesheet("style.css")
+        app.setStyleSheet(stylesheet)
     mw = MainWindow()
     mw.resize(1, 400)
     mw.show()
-    sys.exit(app.exec())
