@@ -38,7 +38,6 @@ run_code()
 menu = pystray.Menu( # Start pystray menu
     Item("Toggle State", run_code, default=True)
 )
-
 icon = pystray.Icon("omnivim", load_image(), menu=menu)
 
 def setup(icon):

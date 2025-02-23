@@ -45,35 +45,46 @@ def run_windows():
                     return False
 
             # exit back to normal mode
-            elif (ctrl_mode and event.name == "c") or event.name=="esc":
+            elif ((ctrl_mode and event.name == "c") or event.name=="esc") and mode != "kill":
                 keyboard.release("ctrl")
+                keyboard.release("shift")
                 write_mode("normal")
                 ctrl_mode=False
                 return False
-
             match mode:
                 case "visual":
+                    if event.name == "shift":
+                        shift_mode = True
                     if event.name == "ctrl":
                         ctrl_mode = True
-                        return False
+                    elif shift_mode and ctrl_mode:
+                        if event.name == "q":
+                            write_mode("kill")
                     else:
                         visual(event)
-
                 case "normal":
+                    if event.name == "shift":
+                        shift_mode = True
                     if event.name == "ctrl":
                         ctrl_mode = True
-                        return False
+                    elif shift_mode and ctrl_mode:
+                        if event.name == "Q":
+                            write_mode("kill")
                     else:
                         normal(event)
 
                 case "mouse":
+                    if event.name == "shift":
+                        shift_mode = True
                     if event.name == "ctrl":
                         ctrl_mode = True
-                        return False
+                    elif shift_mode and ctrl_mode:
+                        if event.name == "q":
+                            write_mode("kill")
                     else:
                         mouse(event)
 
-                case "insert":
+                case "insert" | "kill":
                     if event.event_type == "down":
                         # allows for default key-binds to be used in insert mode
                         if event.name == "ctrl":
@@ -83,9 +94,13 @@ def run_windows():
                         if event.name =="shift":
                             shift_mode = True
                         if shift_mode and not ctrl_mode:
+                            print(event.name)
                             # if alphabetic and one character long (not SPACE, BACKSPACE, or ENTER)
                             if event.name.isalpha() and len(event.name) == 1:
                                 keyboard.write(event.name.upper())
+                                return False
+                            elif event.name in ["up","down","left","right"]:
+                                keyboard.send(f"right shift + left shift + {event.name}")
                                 return False
                             else:
 
@@ -96,11 +111,16 @@ def run_windows():
                                     keyboard.press(f"shift+{event.name}")
                                 return False
                         elif shift_mode and ctrl_mode:
-                            keyboard.send(f"ctrl+shift+{event.name}")
+                            if event.name == "q":
+                                write_mode("normal" if mode == "kill" else "kill")
+                            elif event.name in ["up","down","left","right"]:
+                                keyboard.send(f"ctrl+right shift + left shift + {event.name}")
+                                return False
+                            else:
+                                keyboard.send(f"ctrl+shift+{event.name}")
                         else:
                             keyboard.press(event.name)
                             return False
-                        
                     return False
 
         # release held keys for mouse navigation
