@@ -57,14 +57,14 @@ def move_mouse_right():
 def move_mouse_up():
     global moving_up, speed_multiplier
     while moving_up:
-        mouse.move(0, 4 * speed_multiplier)
+        mouse.move(0, -4 * speed_multiplier)
         time.sleep(0.01)
 
 
 def move_mouse_down():
     global moving_down, speed_multiplier
     while moving_down:
-        mouse.move(0, -4 * speed_multiplier)
+        mouse.move(0, 4 * speed_multiplier)
         time.sleep(0.01)
 
 def scroll_down():
