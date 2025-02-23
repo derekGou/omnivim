@@ -45,7 +45,7 @@ def setup(icon):
     icon.visible = True
     while icon.visible:  # Ensure the thread stops if the icon is closed
         icon.icon = load_image()
-        time.sleep(1)  # Avoid 100% CPU usagehhh
+        time.sleep(1)  # Avoid 100% CPU usage
 
 run_code() 
 icon.run(setup)

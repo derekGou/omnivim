@@ -71,7 +71,10 @@ def run_windows():
                                 keyboard.write(event.name.upper())
                                 return False
                             else:
-                                keyboard.press(f"shift+{event.name}")
+                                if event.name == "+":
+                                    keyboard.send("+")
+                                else:
+                                    keyboard.press(f"shift+{event.name}")
                                 return False
                         else:
                             keyboard.press(event.name)
