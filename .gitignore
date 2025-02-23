@@ -1,2 +1,9 @@
 *.txt
 Windows_Mouse_Movments/__pycache__/
+build
+dist
+Omnivim.exe
+Omnivim.spec
+venv
+Images/Omnivim.ico
+__pycache__

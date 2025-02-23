@@ -32,7 +32,6 @@ class MainWindow(QWidget):
         font_path = os.path.join(script_dir, "Ibm.ttf")
         font_id = QFontDatabase.addApplicationFont(font_path)
         font_family = QFontDatabase.applicationFontFamilies(font_id)
-        print(font_family)
         if font_id == -1:
             print("Error: Font not loaded.")
             return
@@ -71,8 +70,6 @@ class MainWindow(QWidget):
 
         # Optionally trigger an update if needed
         self.update()
-
-        print("running")
 
     def paintEvent(self, event):
         # No need to recreate the button here, just call the parent class's paintEvent
