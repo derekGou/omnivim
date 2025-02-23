@@ -6,6 +6,7 @@ from platform import system
 import os
 from Windows_Mouse_Movments.main_windows import run_windows
 from Windows_Mouse_Movments.write_mode import write_mode
+from gui import run_window
 import time
 
 
@@ -30,16 +31,19 @@ def load_image():
 
 def run_code():
     if os.name == 'nt':
+        with open("Windows_Mouse_Movments/vimmode.txt", "w") as f:
+            f.truncate(0)
+            f.write("normal")
+        f.close()
         t1 = Thread(target=run_windows, daemon=True)
         t1.start()
 
 run_code()
 
-menu = pystray.Menu(
-    Item("Toggle State", run_code, default=True)
-)
 
-icon = pystray.Icon("omnivim", load_image(), menu=menu)
+icon = pystray.Icon("omnivim", load_image(), menu=pystray.Menu(
+    Item("Open", run_window, default=True),
+))
 
 def setup(icon):
     icon.visible = True
