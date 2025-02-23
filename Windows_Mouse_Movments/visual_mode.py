@@ -1,7 +1,7 @@
 from pynput.mouse import Button, Controller
 from pynput.keyboard import Controller, Key
 import keyboard
-from write_mode import write_mode
+from Windows_Mouse_Movments.write_mode import write_mode
 d_mode, g_mode = False,False
 mouse = Controller()
 kb_controller = Controller()

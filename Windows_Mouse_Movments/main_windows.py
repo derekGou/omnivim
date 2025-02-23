@@ -13,7 +13,7 @@ shift_mode = False
 def run_windows():
     def on_key_event(event):
         global ctrl_mode,shift_mode
-        with open("Windows_Mouse_Movments/vimmode.txt", "r") as f:
+        with open("Windows_Mouse_Movments/vimmode.txt", "r") as f:                                                                                                     
             mode = f.read().strip()
         f.close()
         if event.event_type == 'down':
@@ -28,6 +28,11 @@ def run_windows():
                     case "m":
                         write_mode("mouse")
                         return False
+                if ctrl_mode and event.name == "s":
+                    keyboard.press_and_release("ctrl+s")
+                    ctrl_mode = False
+                    return False
+
             elif (ctrl_mode and event.name == "c") or event.name=="esc":
                 keyboard.release("ctrl")
                 write_mode("normal")
@@ -62,10 +67,10 @@ def run_windows():
                             shift_mode = True
                             return False
                         elif shift_mode:
-                            if event.name.isalpha():  # Check if it's a letter
-                                keyboard.write(event.name.upper())  # Convert to uppercase directly
+                            if event.name.isalpha():
+                                keyboard.write(event.name.upper())
                             else:
-                                keyboard.write(event.name)  # Use shift for non-letters
+                                keyboard.write(event.name)
                             return False
 
                         else:
@@ -84,4 +89,3 @@ def run_windows():
             else:
                 keyboard.release(event.name)
     keyboard.hook(on_key_event, suppress=True)
-    # keyboard.wait("ctrl+f4") QPDfGJCBm shift + )shift + _shift + _shift + _

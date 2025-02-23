@@ -60,6 +60,17 @@ def normal_on_key_event(event):
                 case "p":
                     keyboard.press_and_release("ctrl+v")
                     return False
+                case "o":
+                    keyboard.press_and_release("end")
+                    keyboard.press_and_release("enter")
+                    write_mode("insert")
+                    return False
+                case "O": 
+                    keyboard.press_and_release("up_arrow")
+                    keyboard.press_and_release("end")
+                    keyboard.press_and_release("enter")
+                    write_mode("insert")
+                    return False
                 case "ctrl + s":
                     keyboard.press_and_release("ctrl + s")
                     return False
