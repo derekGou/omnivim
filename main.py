@@ -38,8 +38,6 @@ def run_code(): # Start program
         t1 = Thread(target=run_windows, daemon=True)
         t1.start()
 
-run_code()
-
 icon = pystray.Icon("omnivim", load_image(), menu=pystray.Menu(
     Item("Open", run_window, default=True),
 ))
@@ -48,7 +46,6 @@ def setup(icon):
     icon.visible = True
     while icon.visible:  # Ensure the thread stops if the icon is closed
         icon.icon = load_image()
-        time.sleep(1)  # Avoid 100% CPU usage
-run_window()
+        time.sleep(0.1)  # Avoid 100% CPU usage
 run_code() 
 icon.run(setup)
