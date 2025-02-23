@@ -19,9 +19,11 @@ class MainWindow(QWidget):
         self.setWindowTitle("Omnivim")
         self.setLayout(self.layout)
         self.extratext = ""
+        
         with open("Windows_Mouse_Movments/vimmode.txt", "r") as f:
             typ = f.read().strip()
-        if typ=="kill" or len(typ)==0:
+        
+        if typ == "kill" or len(typ) == 0:
             self.extratext = "Turn on"
         else:
             self.extratext = "Turn off"
@@ -54,16 +56,27 @@ class MainWindow(QWidget):
         self.layout.addWidget(self.textbox, alignment=Qt.AlignmentFlag.AlignCenter)
 
     def on_button_click(self):
+        # Update the text based on the state
         with open("Windows_Mouse_Movments/vimmode.txt", "w") as f:
             f.truncate(0)
-            if self.extratext=="Turn on":
+            if self.extratext == "Turn on":
                 f.write("normal")
-                self.extratext="Turn off"
+                self.extratext = "Turn off"
             else:
                 f.write("kill")
-                self.extratext="Turn on"
-        self.repaint()
+                self.extratext = "Turn on"
+
+        # Update the button text directly without recreating the button
+        self.button.setText(f'{self.extratext} Omnivim')
+
+        # Optionally trigger an update if needed
+        self.update()
+
         print("running")
+
+    def paintEvent(self, event):
+        # No need to recreate the button here, just call the parent class's paintEvent
+        super().paintEvent(event)
 
 def load_stylesheet(filename):
     file = QFile(filename)
@@ -76,8 +89,9 @@ def run_window():
     stylesheet = load_stylesheet("style.css")
     app.setStyleSheet(stylesheet)
 
-
     mw = MainWindow()
     mw.resize(1, 400)
     mw.show()
     sys.exit(app.exec())
+
+run_window()
