@@ -75,7 +75,7 @@ def run_windows():
 
                 case "mouse":
                     if event.name == "shift":
-                        shift_mode = True
+                        shift_mode = True 
                     if event.name == "ctrl":
                         ctrl_mode = True
                     elif shift_mode and ctrl_mode:
@@ -83,6 +83,8 @@ def run_windows():
                             write_mode("kill")
                     else:
                         mouse(event)
+                        shift_mode = False
+                        ctrl_mode = False
 
                 case "insert" | "kill":
                     if event.event_type == "down":

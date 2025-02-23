@@ -15,7 +15,7 @@ moving_right = False
 moving_up = False
 moving_down = False
 scrolling_down = False
-scrolling_up = False
+scrolling_up = False 
 speed_multiplier = 1
 
 # Get screen size
