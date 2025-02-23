@@ -10,9 +10,9 @@ import time
 
 
 
-write_mode("normal")
+write_mode("normal") #Intialize Mode
 
-def load_image():
+def load_image(): # Function to load Tray icon
     with open("Windows_Mouse_Movments/vimmode.txt", "r") as f:
         typ = f.read().strip()
 
@@ -24,18 +24,18 @@ def load_image():
         "mouse": "Images/omnivimm.png"
     }
 
-    if typ not in images:
+    if typ not in images:# Catch errors
         return Image.open("Images/omnivim.png")
     return Image.open(images[typ])
 
-def run_code():
+def run_code(): # Start program
     if os.name == 'nt':
         t1 = Thread(target=run_windows, daemon=True)
         t1.start()
 
 run_code()
 
-menu = pystray.Menu(
+menu = pystray.Menu( # Start pystray menu
     Item("Toggle State", run_code, default=True)
 )
 

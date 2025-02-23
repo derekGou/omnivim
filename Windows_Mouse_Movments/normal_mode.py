@@ -7,10 +7,10 @@ mouse = Controller()
 kb_controller = Controller()
 
 
-def normal_on_key_event(event):
-    global d_mode, g_mode
-    if event.event_type == 'down':
-        if not d_mode and not g_mode:
+def normal_on_key_event(event):# Initialize Function for normal mode
+    global d_mode, g_mode #Special Cases
+    if event.event_type == 'down': # Checks for down click
+        if not d_mode and not g_mode: # Not special Cases
             match event.name:
                 case "h":
                     keyboard.press_and_release("left_arrow")
@@ -77,7 +77,7 @@ def normal_on_key_event(event):
                     keyboard.press_and_release("ctrl + shift + z")
                     return False
                 
-        elif d_mode:
+        elif d_mode: #  Special Case D
             match event.name:
                 case "d":
                     keyboard.press_and_release("end")
@@ -88,7 +88,7 @@ def normal_on_key_event(event):
                     keyboard.press_and_release("backspace")
             d_mode = False
             return False
-        elif g_mode:
+        elif g_mode: #  Special Case G
             match event.name:
                 case "g":
                     keyboard.press_and_release("ctrl+home")

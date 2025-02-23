@@ -6,11 +6,11 @@ d_mode, g_mode = False,False
 mouse = Controller()
 kb_controller = Controller()
 
-def visual_on_key_event(event):
+def visual_on_key_event(event): #Visual Mode Function
     global d_mode, g_mode
-    if event.event_type == 'down':
-        if not d_mode and not g_mode:
-            match event.name:
+    if event.event_type == 'down':#Makes sure is key down
+        if not d_mode and not g_mode:# Checks for special Cases
+            match event.name: # Vim commands on visual mode
                 case "h":
                     keyboard.send("right shift+left shift+left_arrow")
                     return False
@@ -55,11 +55,10 @@ def visual_on_key_event(event):
                     write_mode("normal")
                     return False
                 case "x":
-                    keyboard.press_and_release(" ")
-                    keyboard.press_and_release("backspace")
+                    keyboard.send("backspace")
                     write_mode("normal")
                     return False
-        elif g_mode:
+        elif g_mode: #G mode 
             match event.name:
                 case "g":
                     keyboard.send("ctrl+right shift+left shift+home")
