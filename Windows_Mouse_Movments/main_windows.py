@@ -29,7 +29,7 @@ def run_windows():
                         write_mode("mouse")
                         return False
                 if ctrl_mode and event.name == "s":
-                    keyboard.press_and_release("ctrl+alt+down_arrow")
+                    keyboard.press_and_release("ctrl+s")
                     ctrl_mode = False
                     return False
 
